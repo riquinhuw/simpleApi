@@ -20,6 +20,6 @@ server.post('/addInfo',(request, response)=>{
   return response.json(banco);
 })
 
-server.listen(3333, ()=>{
+server.listen(process.env.PORT || 3333, ()=>{
   console.log('Listen in port 3333.')
 });
