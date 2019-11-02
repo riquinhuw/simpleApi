@@ -7,8 +7,8 @@ server.use(express.static('./view'));
 
 const banco = [];
 
-server.get('/',(request, response)=>{
-  return response.json(banco);
+server.get('/', function(request, response) {
+  response.render('index.html');
 });
 
 server.get('/lastInfo',(request, response)=>{
