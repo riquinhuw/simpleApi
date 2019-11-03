@@ -1,12 +1,14 @@
 const express = require('express');
-
 const server = express();
+const bodyParser = require('body-parser');
+const db = require('./queries');
 
 server.use(express.json());
 server.use(express.static('./view'));
 
-const banco = [];
 
+const banco = [];
+/*
 server.get('/', function(request, response) {
   response.render('index.html');
 });
@@ -20,6 +22,13 @@ server.post('/addInfo',(request, response)=>{
   banco.push(info);
   return response.json(banco);
 })
+*/
+
+server.get('/users', db.getUsers)
+server.get('/users/:id', db.getUserById)
+server.post('/users', db.createUser)
+server.put('/users/:id', db.updateUser)
+server.delete('/users/:id', db.deleteUser)
 
 server.listen(process.env.PORT || 3333, ()=>{
   console.log('Listen in port 3333.')
