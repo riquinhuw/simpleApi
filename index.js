@@ -24,8 +24,11 @@ server.post('/addInfo',(request, response)=>{
 })
 */
 
+
+
 server.get('/users', db.getUsers)
 server.get('/users/:id', db.getUserById)
+server.get('/usuarios/:id',db.getUserPorId)
 server.post('/users', db.createUser)
 server.put('/users/:id', db.updateUser)
 server.delete('/users/:id', db.deleteUser)
