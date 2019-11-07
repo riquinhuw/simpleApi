@@ -36,7 +36,7 @@ const getUsers = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(201).send(`User added with ID: ${result.insertId}`)
+       response.status(201).send(`User added with ID: ${results .insertId}`)
     })
   }
 
