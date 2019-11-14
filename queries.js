@@ -90,9 +90,8 @@ const getUsers = (request, response) => {
   }
 
   const getLastTemp = (request, response) => {
-    const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM regadas ORDER BY id DESC LIMIT 1', [id], (error, results) => {
+    pool.query('SELECT * FROM regadas ORDER BY id DESC LIMIT 1', (error, results) => {
       if (error) {
         throw error
       }
