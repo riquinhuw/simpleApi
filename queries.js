@@ -78,6 +78,53 @@ const getUsers = (request, response) => {
     })
   }
 
+
+  // 
+  const getTemp = (request, response) => {
+    pool.query('SELECT * FROM regadas ORDER BY id DESC', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+  const getLastTemp = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('SELECT * FROM regadas ORDER BY id DESC LIMIT 1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+  const postTemp = (request, response) => {
+    const { umidade, regada } = request.body
+    console.log(request.body)
+    pool.query('INSERT INTO regadas (umidade, regada) VALUES ($1, $2)', [umidade, regada], (error, results) => {
+      if (error) {
+        throw error
+      }
+       response.status(201).send(`Regada adicionada com o ID: ${results .insertId}`)
+    })
+  }
+
+
+  const deleteTemp = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM regadas WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Regada removida de ID: ${id}`)
+    })
+  }
+
+
+
   module.exports = {
     getUsers,
     getUserById,
@@ -85,4 +132,8 @@ const getUsers = (request, response) => {
     updateUser,
     deleteUser,
     getUserPorId,
+    deleteTemp,
+    postTemp,
+    getLastTemp,
+    getTemp,
   }
