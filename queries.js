@@ -147,6 +147,16 @@ const getUsers = (request, response) => {
     )
   }
 
+  const getComandoRegar = (request, response) => {
+  
+    pool.query('SELECT * FROM comando ORDER BY id DESC LIMIT 1', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
 
   module.exports = {
     getUsers,
@@ -161,4 +171,5 @@ const getUsers = (request, response) => {
     getTemp,
     updateComandoRegarOn,
     updateComandoRegarOff,
+    getComandoRegar,
   }
