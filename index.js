@@ -38,7 +38,8 @@ server.get('/lasttemp',db.getLastTemp)
 server.post('/temp',db.postTemp)
 server.delete('/temp:id',db.deleteTemp)
 
-
+serger.get('/regaron',updateComandoRegarOn)
+serger.get('/regaroff',updateComandoRegarOff)
 
 server.listen(process.env.PORT || 3333, ()=>{
   console.log('Listen in port 3333.')

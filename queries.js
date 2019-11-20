@@ -121,7 +121,31 @@ const getUsers = (request, response) => {
       response.status(200).send(`Regada removida de ID: ${id}`)
     })
   }
+  //update comando set regar=1 where id=1;
 
+  const updateComandoRegarOn = (request, response) => {  
+    pool.query(
+      'update comando set regar=1 where id=1;',
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`Comando de regar foi enviado`)
+      }
+    )
+  }
+
+  const updateComandoRegarOff = (request, response) => {  
+    pool.query(
+      'update comando set regar=0 where id=1;',
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`Retirando comando de regar`)
+      }
+    )
+  }
 
 
   module.exports = {
@@ -135,4 +159,6 @@ const getUsers = (request, response) => {
     postTemp,
     getLastTemp,
     getTemp,
+    updateComandoRegarOn,
+    updateComandoRegarOff,
   }
