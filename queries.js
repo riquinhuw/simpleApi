@@ -149,7 +149,7 @@ const getUsers = (request, response) => {
 
   const getComandoRegar = (request, response) => {
   
-    pool.query('SELECT * FROM comando ORDER BY id DESC LIMIT 1', (error, results) => {
+    pool.query('SELECT regar FROM comando ORDER BY id DESC LIMIT 1', (error, results) => {
       if (error) {
         throw error
       }
