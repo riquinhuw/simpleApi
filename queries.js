@@ -148,14 +148,12 @@ const getUsers = (request, response) => {
   }
 
   const getComandoRegar = (request, response) => {
-    var receber
     pool.query('SELECT regar FROM comando ORDER BY id DESC LIMIT 1', (error, results) => {
       if (error) {
         throw error
       }
-      receber =results.rows
+      response.status(200).json(results.rows)
     })
-    response.status(200).send(receber)
   }
 
 
